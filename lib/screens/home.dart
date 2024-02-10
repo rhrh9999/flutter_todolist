@@ -3,17 +3,33 @@ import 'package:flutter_todolist_app/constants/colors.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: toBGColor,
-        appBar: _buildAppBar(),
+      appBar: _buildAppBar(),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal:15),
+        padding: EdgeInsets.symmetric(
+            horizontal:20,
+            vertical: 15
+        ),
         child: Column(
           children: [
             searchBox(),
+              Expanded(
+                  child: ListView(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 50, bottom: 20),
+                        child: Text('All ToDos', style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        ),
+                      ),
+                    ],
+                  ),
+              )
           ],
         ),
     ),
@@ -30,7 +46,7 @@ class Home extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(0),
-          prefixIcon: Icon( //돋보기아이콘
+          prefixIcon: Icon(
             Icons.search,
             color: toBlack,
             size: 20,
