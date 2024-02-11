@@ -11,7 +11,14 @@ class Home extends StatefulWidget {
 }
    class _HomeState extends State<Home>{
   final todosList = ToDo.todoList();
+  List<ToDo> _foundToDo =[];
   final _todoController=TextEditingController();
+
+  @override
+  void initState(){
+    _foundToDo = todosList;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +47,7 @@ class Home extends StatefulWidget {
                         ),
                       ),
 
-                      for ( ToDo todoo in todosList)
+                      for ( ToDo todoo in _foundToDo.reversed)
                         ToDoItem(
                             todo: todoo,
                             onToDoChanged: _handleToDoChange,
@@ -101,7 +108,7 @@ class Home extends StatefulWidget {
                       minimumSize: Size(60, 60),
                       elevation: 10,
                     ),
-                    ),
+                  ),
                 ),
               ],
             )
@@ -133,6 +140,24 @@ class Home extends StatefulWidget {
     _todoController.clear();
   }
 
+  void _runFilter(String enteredKeyword) {
+    List<ToDo> results = [];
+    if (enteredKeyword.isEmpty) {
+      results = todosList;
+    } else {
+      results = todosList.
+      where((item) =>
+          item.todoText!
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+
+    setState(() {
+      _foundToDo = results;
+    });
+  }
+
   Widget searchBox() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
@@ -141,6 +166,7 @@ class Home extends StatefulWidget {
           borderRadius: BorderRadius.circular(20)
       ),
       child: TextField(
+        onChanged: (value) => _runFilter(value),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(0),
           prefixIcon: Icon(
@@ -159,7 +185,6 @@ class Home extends StatefulWidget {
       ),
     );
   }
-
 
   AppBar _buildAppBar(){
     return AppBar(
