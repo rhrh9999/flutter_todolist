@@ -43,7 +43,7 @@ class Home extends StatefulWidget {
                         ToDoItem(
                             todo: todoo,
                             onToDoChanged: _handleToDoChange,
-                            onDeleteItem: () {},
+                            onDeleteItem: _deleteToDoItem,
                         ),
 
                     ],
@@ -113,6 +113,11 @@ class Home extends StatefulWidget {
     });
   }
 
+  void _deleteToDoItem(String id){
+    setState(() {
+      todosList.removeWhere((item) => item.id == id);
+    });
+  }
 
 
   Widget searchBox() {
