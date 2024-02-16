@@ -6,9 +6,9 @@ void main() {
   runApp(const MyApp());
 }
 
+//statelesswidget: 변경상태가 필요하지 않은 위젯
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   //root of application
   @override
   Widget build(BuildContext context) {

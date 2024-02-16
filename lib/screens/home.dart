@@ -30,7 +30,7 @@ class Home extends StatefulWidget {
           Container(
             padding: EdgeInsets.symmetric(
                 horizontal:20,
-                vertical: 15
+                vertical: 10
             ),
             child: Column(
               children: [
@@ -39,9 +39,9 @@ class Home extends StatefulWidget {
                   child: ListView(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 50, bottom: 20),
+                        margin: EdgeInsets.only(top: 50, bottom: 10),
                         child: Text('All ToDos', style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 27,
                           fontWeight: FontWeight.w500,
                         ),
                         ),
@@ -53,7 +53,6 @@ class Home extends StatefulWidget {
                             onToDoChanged: _handleToDoChange,
                             onDeleteItem: _deleteToDoItem,
                         ),
-
                     ],
                   ),
                 )
@@ -99,7 +98,12 @@ class Home extends StatefulWidget {
                       right: 20,
                   ),
                   child: ElevatedButton(
-                    child: Text('+', style: TextStyle(fontSize: 40,),),
+                    child: Text('+',
+                      style: TextStyle(
+                          fontSize: 40,
+                          color: Colors.white //+아이콘 색깔을 흰색으로 지정
+                      ),
+                    ),
                     onPressed: () {
                       _addToDoItem(_todoController.text);
                     },
@@ -189,7 +193,7 @@ class Home extends StatefulWidget {
   AppBar _buildAppBar(){
     return AppBar(
       backgroundColor: toBGColor,
-      elevation: 0,
+      elevation: 0, //그림자
       title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -210,4 +214,3 @@ class Home extends StatefulWidget {
     );
   }
 }
-

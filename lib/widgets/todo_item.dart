@@ -40,26 +40,29 @@ class ToDoItem extends StatelessWidget {
             decoration: todo.isDone? TextDecoration.lineThrough : null,
           ),
         ),
+
         trailing: Container(
           padding: EdgeInsets.all(0),
           margin: EdgeInsets.symmetric(vertical: 12),
           height: 35,
           width: 35,
           decoration: BoxDecoration(
-            color: toRed,
-            borderRadius: BorderRadius.circular(5),
+            color: toRed, //trash캔 색 빨강으로
+            borderRadius: BorderRadius.circular(30), //trash캔 테두리 둥글게
           ),
-          child: IconButton(
-            color: Colors.white,
-            iconSize: 18,
-            icon: Icon(Icons.delete),
-            onPressed: () {
-              //print('Clicked on delete icon');
-              onDeleteItem(todo.id);
-            },
-          ),
+
+            child: IconButton(
+              color: Colors.white,
+              iconSize: 18,
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                //print('Clicked on delete icon');
+                onDeleteItem(todo.id);
+              },
+            ),
+          )
         ),
-      ),
+
     );
   }
 }
